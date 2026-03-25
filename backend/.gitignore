@@ -16,6 +16,5 @@ build/
 
 # Google Service Account Key
 google-service-account.json
-*.json
 !package.json
 !package-lock.json
