@@ -84,12 +84,16 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start server
-app.listen(PORT, async () => {
-  // Kết nối MongoDB (nếu có URI)
-  await connectDB();
+// Kết nối MongoDB khi khởi động
+connectDB();
 
-  console.log(`
+// Export app cho Vercel serverless
+module.exports = app;
+
+// Start server chỉ khi chạy local (không phải serverless)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`
   🚀 Server is running!
   
   📍 Local:            http://localhost:${PORT}
@@ -99,6 +103,6 @@ app.listen(PORT, async () => {
   
   Press CTRL+C to stop
   `);
-});
+  });
+}
 
-module.exports = app;
