@@ -9,6 +9,7 @@ class VideoTemplate {
   final String? templateId; // UUID thực tế để gửi lên n8n
   final int? duration;
   final List<String>? features;
+  final TemplateConfig? templateConfig; // Cấu hình đặc biệt cho mỗi template
 
   const VideoTemplate({
     required this.id,
@@ -21,6 +22,7 @@ class VideoTemplate {
     this.templateId,
     this.duration,
     this.features,
+    this.templateConfig,
   });
 
   // Factory constructor để parse JSON từ API
@@ -38,6 +40,9 @@ class VideoTemplate {
       features: json['features'] != null
           ? List<String>.from(json['features'])
           : null,
+      templateConfig: json['templateConfig'] != null
+          ? TemplateConfig.fromJson(json['templateConfig'])
+          : null,
     );
   }
 
@@ -54,6 +59,36 @@ class VideoTemplate {
       'templateId': templateId,
       'duration': duration,
       'features': features,
+      'templateConfig': templateConfig?.toJson(),
+    };
+  }
+}
+
+/// Cấu hình đặc biệt cho mỗi template
+class TemplateConfig {
+  final String? dataStructure; // 'default', 'voice-over', etc.
+  final bool? hasOverallVoice; // Template có overall voice không
+  final String? aspectRatio; // '16:9', '9:16', '1:1'
+
+  const TemplateConfig({
+    this.dataStructure,
+    this.hasOverallVoice,
+    this.aspectRatio,
+  });
+
+  factory TemplateConfig.fromJson(Map<String, dynamic> json) {
+    return TemplateConfig(
+      dataStructure: json['dataStructure'] as String?,
+      hasOverallVoice: json['hasOverallVoice'] as bool?,
+      aspectRatio: json['aspectRatio'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'dataStructure': dataStructure,
+      'hasOverallVoice': hasOverallVoice,
+      'aspectRatio': aspectRatio,
     };
   }
 }

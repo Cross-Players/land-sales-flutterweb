@@ -128,6 +128,33 @@ const videoTemplates = [
     createdAt: "2024-02-20T00:00:00.000Z",
     updatedAt: "2024-03-10T00:00:00.000Z",
   },
+  {
+    id: "voice-over-169",
+    title: "16:9 Thêm Voice Over",
+    description:
+      "Tạo video 16:9 với AI voice over xuyên suốt - chỉ cần điền text một lần",
+    imageUrl:
+      "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=800",
+    tag: "AI Voice",
+    isPopular: true,
+    category: "voice-over",
+    templateId: "65524163-6262-42bb-974d-a7980e65e916",
+    duration: 120,
+    features: [
+      "AI Voice Over xuyên suốt",
+      "Tỷ lệ 16:9 chuẩn",
+      "Tải lên nhiều ảnh/video",
+      "Chỉ điền text một lần",
+    ],
+    // Cấu hình đặc biệt cho template này
+    templateConfig: {
+      dataStructure: "voice-over", // Định nghĩa cấu trúc data riêng
+      hasOverallVoice: true, // Template này có overall voice
+      aspectRatio: "16:9",
+    },
+    createdAt: "2026-03-25T00:00:00.000Z",
+    updatedAt: "2026-03-25T00:00:00.000Z",
+  },
 ];
 
 /**

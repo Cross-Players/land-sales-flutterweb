@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'src/shared/theme/app_theme.dart';
 import 'src/features/dashboard/presentation/dashboard_screen.dart';
 import 'src/features/video_generator/presentation/video_generator_wrapper.dart';
@@ -10,6 +11,10 @@ import 'src/shared/widgets/app_header.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Load environment variables
+  await dotenv.load(fileName: ".env");
+
   runApp(const ProviderScope(child: MyApp()));
 }
 
